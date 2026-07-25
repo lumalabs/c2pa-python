@@ -1,0 +1,45 @@
+# Build musllinux wheels for Alpine. Upstream only publishes manylinux (glibc).
+name: Build musllinux wheel
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*-musl*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build musllinux_1_2_x86_64 wheel
+        run: |
+          chmod +x scripts/build_musllinux_wheel.sh
+          OUT_DIR="${{ github.workspace }}/dist" ./scripts/build_musllinux_wheel.sh
+
+      - name: Upload wheel artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: musllinux-x86_64-wheel
+          path: dist/*.whl
+          if-no-files-found: error
+
+      - name: Create GitHub Release (tag pushes)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.whl
+          generate_release_notes: true
+          body: |
+            Musllinux (Alpine/musl) wheel.
+
+            Pin with uv find-links (example):
+            ```toml
+            [tool.uv]
+            find-links = ["https://github.com/${{ github.repository }}/releases/expanded_assets/${{ github.ref_name }}"]
+            ```
+            Keep `c2pa-python==0.37.1` (or matching) on PyPI for macOS/glibc; uv selects this wheel on Alpine via the `musllinux` tag.

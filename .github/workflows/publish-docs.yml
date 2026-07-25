@@ -1,10 +1,12 @@
 name: Build and publish docs
 
+# DISABLED on this fork — see MUSLLINUX.md. Restore the commented `on:` to match upstream.
 on:
-  release:
-    types: [published]
-
   workflow_dispatch:
+# on:
+#   release:
+#     types: [published]
+#   workflow_dispatch:
 
 permissions:
   contents: read

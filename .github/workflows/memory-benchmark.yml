@@ -1,12 +1,15 @@
 name: Python SDK memray memory benchmark
 
+# DISABLED on this fork — see MUSLLINUX.md. Restore the commented `on:` to match upstream.
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - labeled
+  workflow_dispatch:
+# on:
+#   pull_request:
+#     types:
+#       - opened
+#       - reopened
+#       - synchronize
+#       - labeled
 
 permissions:
   contents: read

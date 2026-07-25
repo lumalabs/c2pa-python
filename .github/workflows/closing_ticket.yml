@@ -2,9 +2,12 @@
 # it will update the workflow labels appropriately.
 
 name: Closing ticket
+# DISABLED on this fork — see MUSLLINUX.md.
 on:
-  issues:
-    types: [closed]
+  workflow_dispatch:
+# on:
+#   issues:
+#     types: [closed]
 jobs:
   label_issues:
     runs-on: ubuntu-latest
