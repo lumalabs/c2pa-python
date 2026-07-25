@@ -1,9 +1,12 @@
 # This ensures that when a ticket is not labeled as Done in Jira, it will re-open the ticket on GitHub.
 
 name: Labeling ticket "To Do"
+# DISABLED on this fork — see MUSLLINUX.md.
 on:
-  issues:
-    types: [labeled]
+  workflow_dispatch:
+# on:
+#   issues:
+#     types: [labeled]
 jobs:
   label_issues:
     runs-on: ubuntu-latest

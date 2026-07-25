@@ -2,9 +2,12 @@
 # workflow labels in GitHub appropriately.
 
 name: Reopening ticket
+# DISABLED on this fork — see MUSLLINUX.md.
 on:
-  issues:
-    types: [reopened]
+  workflow_dispatch:
+# on:
+#   issues:
+#     types: [reopened]
 jobs:
   label_issues:
     runs-on: ubuntu-latest
