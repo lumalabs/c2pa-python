@@ -46,6 +46,8 @@ To use the module in Python code, import the module like this:
 import c2pa
 ```
 
+**This fork:** Alpine/musl wheels are not on PyPI. See [MUSLLINUX.md](MUSLLINUX.md).
+
 ## Building from local c2pa-rs sources
 
 ### Using a virtual environment with local builds

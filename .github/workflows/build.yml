@@ -1,23 +1,26 @@
 name: Build
 
+# DISABLED on this fork — see MUSLLINUX.md. Restore the commented `on:` to match upstream.
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - labeled
-  push:
-    branches:
-      - main
-    tags:
-      - "*"
   workflow_dispatch:
-    inputs:
-      publish:
-        description: 'Publish'
-        required: true
-        default: 'false'
+# on:
+#   pull_request:
+#     types:
+#       - opened
+#       - reopened
+#       - synchronize
+#       - labeled
+#   push:
+#     branches:
+#       - main
+#     tags:
+#       - "*"
+#   workflow_dispatch:
+#     inputs:
+#       publish:
+#         description: 'Publish'
+#         required: true
+#         default: 'false'
 
 permissions:
   contents: read
